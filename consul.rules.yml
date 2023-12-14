@@ -1,0 +1,12 @@
+groups:
+  - name: ApiPython
+    rules:
+      - alert: ApiPythonTaxaAlta
+        expr: sum_over_time(spring_cloud_gateway_requests_seconds_count{routeId="ReactiveCompositeDiscoveryClient_python-consul"}[10s]) > 1
+        for: 120s
+        labels:
+          team: webapipython
+          severity: high
+        annotations:
+          summary: Taxa de acesso alta em {{$labels.instance}}
+          description: "{{$labels.instance}} está com muitos acessos em um curto periodo de tempo"
