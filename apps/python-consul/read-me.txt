@@ -1,0 +1,2 @@
+# Comando para instalar as dependencias: pip install -r dependencies.txt
+#OBS: No arquivo middleware e preciso substituir os IPs e portas para conexão com o consul
