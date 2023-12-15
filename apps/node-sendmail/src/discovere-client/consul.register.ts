@@ -10,10 +10,10 @@ export class RegisterConsul {
         const serviceData = {
             name: 'node-sendmail',
             address: 'localhost',
-            port: 3000,
+            port: 3001,
             tags: ['nodejs', 'microservices'],
             check: {
-                http: 'http://192.168.1.152:3001',
+                http: 'http://192.168.1.152:3001/check',
                 interval: '10s'
             }
         };

@@ -3,7 +3,7 @@ import { createUserController } from "./useCases/CreateUser";
 
 const router = Router();
 
-router.get('/', (request, respose) => {
+router.get('/check', (request, respose) => {
     console.log('APi connect to get.')
     return respose.json({
         message: 'API connect.'
