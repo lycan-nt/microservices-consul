@@ -13,12 +13,12 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-          - 192.168.1.153:9107
+          - 192.168.1.152:9107
           
   - job_name: 'apps'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 10s
     static_configs:
-      - targets: ['192.168.1.153:8080']
+      - targets: ['192.168.1.152:8080']
         labels:
           group: 'production'

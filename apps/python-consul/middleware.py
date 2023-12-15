@@ -25,10 +25,10 @@ def register_consul():
     service_definition = {
         "ID": "python-consul",
         "Name": "python-consul",
-        "Address": "192.168.1.153",
+        "Address": "192.168.1.152",
         "Port": 8585,
         "Check": {
-            "http": "http://192.168.1.153:8585/api/v1/poc/api-gateway",
+            "http": "http://192.168.1.152:8585/api/v1/poc/api-gateway",
             "interval": "10s"
         }
     }
