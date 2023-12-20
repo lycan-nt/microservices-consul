@@ -25,15 +25,15 @@ def register_consul():
     service_definition = {
         "ID": "python-consul",
         "Name": "python-consul",
-        "Address": "192.168.1.152",
+        "Address": "python-consul",
         "Port": 8585,
         "Check": {
-            "http": "http://192.168.1.152:8585/api/v1/poc/api-gateway",
+            "http": "http://python-consul:8585/api/v1/poc/api-gateway",
             "interval": "10s"
         }
     }
 
-    consul_url = "http://localhost:8500"  # Endereço do Consul Agent
+    consul_url = "http://consul-server:8500"  # Endereço do Consul Agent
 
     response = requests.put(f"{consul_url}/v1/agent/service/register", json=service_definition, verify=False)
 

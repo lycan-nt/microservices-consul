@@ -80,6 +80,16 @@ services:
     depends_on:
       - consul-server
     networks:
+      - microservices    
+
+  python-consul:
+    build:
+      context: ./apps/python-consul  # Diretório onde está o Dockerfile da sua aplicação Python
+    ports:
+      - "8585:8585"  # Mapeia a porta do contêiner para a porta do host
+    depends_on:
+      - consul-server
+    networks:
       - microservices      
 
 networks:
