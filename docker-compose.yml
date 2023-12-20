@@ -41,6 +41,16 @@ services:
       - prometheus
     networks:
       - microservices
+      
+  gateway:
+    build:
+      context: ./apps/gateway  # Diretório onde está o Dockerfile da sua aplicação
+    ports:
+      - "8080:8080"  # Mapeia a porta do contêiner para a porta do host
+    depends_on:
+      - consul-server
+    networks:
+      - microservices
 
 networks:
   microservices:
