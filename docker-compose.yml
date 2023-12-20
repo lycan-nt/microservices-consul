@@ -6,6 +6,8 @@ services:
       - "8500:8500"
     volumes:
       - ./consul-config:/consul/config
+    networks:
+      - microservices
 
   prometheus:
     image: prom/prometheus
@@ -16,6 +18,8 @@ services:
       - ./consul.rules.yml:/etc/prometheus/consul.rules.yml
     depends_on:
       - consul-server
+    networks:
+      - microservices
 
   consul-exporter:
     image: prom/consul-exporter
@@ -24,6 +28,8 @@ services:
     command: --consul.server=consul-server:8500
     depends_on:
       - consul-server
+    networks:
+      - microservices
 
   grafana:
     image: grafana/grafana
@@ -33,3 +39,9 @@ services:
       - ./grafana-values.yaml:/etc/grafana/grafana.ini
     depends_on:
       - prometheus
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge
