@@ -29,6 +29,6 @@ public class UserServiceController {
 
     @GetMapping("/user")
     public ResponseEntity<String> getUser() {
-        return new ResponseEntity<String>("User 2", HttpStatus.OK);
+        return new ResponseEntity<String>("User 1", HttpStatus.OK);
     }
 }
