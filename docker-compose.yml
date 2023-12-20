@@ -71,6 +71,16 @@ services:
       - consul-server
     networks:
       - microservices
+      
+  dept:
+    build:
+      context: ./apps/department  # Diretório onde está o Dockerfile da sua aplicação
+    ports:
+      - "3005:3005"  # Mapeia a porta do contêiner para a porta do host
+    depends_on:
+      - consul-server
+    networks:
+      - microservices      
 
 networks:
   microservices:
