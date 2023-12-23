@@ -3,17 +3,17 @@ import Consul from 'consul';
 export class RegisterConsul {
     static async register() {
         const consul = new Consul({
-            host: 'localhost',
+            host: 'consul-server',
             port: '8500'
         });
         
         const serviceData = {
             name: 'node-sendmail',
-            address: 'localhost',
+            address: 'node-sendmail',
             port: 3001,
             tags: ['nodejs', 'microservices'],
             check: {
-                http: 'http://192.168.1.152:3001/check',
+                http: 'http://node-sendmail:3001/check',
                 interval: '10s'
             }
         };

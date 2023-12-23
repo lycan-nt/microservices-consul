@@ -90,6 +90,16 @@ services:
     depends_on:
       - consul-server
     networks:
+      - microservices   
+
+  node-sendmail:
+    build:
+      context: ./apps/node-sendmail  # Substitua pelo caminho correto
+    ports:
+      - "3001:3001"  # Mapeia a porta do contêiner para a porta do host
+    depends_on:
+      - consul-server
+    networks:
       - microservices      
 
 networks:
