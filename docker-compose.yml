@@ -44,19 +44,29 @@ services:
       
   gateway:
     build:
-      context: ./apps/gateway  # Diretório onde está o Dockerfile da sua aplicação
+      context: ./apps/gateway
     ports:
-      - "8080:8080"  # Mapeia a porta do contêiner para a porta do host
+      - "8080:8080"
     depends_on:
       - consul-server
     networks:
       - microservices
       
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - microservices
+      
+  # ------ Apps ------
+      
   userservice:
     build:
-      context: ./apps/userservice  # Diretório onde está o Dockerfile da sua aplicação
+      context: ./apps/userservice
     ports:
-      - "3002:3002"  # Mapeia a porta do contêiner para a porta do host
+      - "3002:3002"
     depends_on:
       - consul-server
     networks:
@@ -64,9 +74,9 @@ services:
       
   userservice2:
     build:
-      context: ./apps/userservice2  # Diretório onde está o Dockerfile da sua aplicação
+      context: ./apps/userservice2
     ports:
-      - "3003:3003"  # Mapeia a porta do contêiner para a porta do host
+      - "3003:3003"
     depends_on:
       - consul-server
     networks:
@@ -74,9 +84,9 @@ services:
       
   dept:
     build:
-      context: ./apps/department  # Diretório onde está o Dockerfile da sua aplicação
+      context: ./apps/department
     ports:
-      - "3005:3005"  # Mapeia a porta do contêiner para a porta do host
+      - "3005:3005"
     depends_on:
       - consul-server
     networks:
@@ -84,9 +94,9 @@ services:
 
   python-consul:
     build:
-      context: ./apps/python-consul  # Diretório onde está o Dockerfile da sua aplicação Python
+      context: ./apps/python-consul
     ports:
-      - "8585:8585"  # Mapeia a porta do contêiner para a porta do host
+      - "8585:8585"
     depends_on:
       - consul-server
     networks:
@@ -94,13 +104,43 @@ services:
 
   node-sendmail:
     build:
-      context: ./apps/node-sendmail  # Substitua pelo caminho correto
+      context: ./apps/node-sendmail
     ports:
-      - "3001:3001"  # Mapeia a porta do contêiner para a porta do host
+      - "3001:3001"
     depends_on:
       - consul-server
     networks:
       - microservices      
+      
+  send-message:
+    build:
+      context: ./apps/send-message
+    ports:
+      - "3006:3006"
+    depends_on:
+      - rabbitmq
+    networks:
+      - microservices
+      
+  read-message:
+    build:
+      context: ./apps/read-message
+    ports:
+      - "3007:3007"
+    depends_on:
+      - send-message
+    networks:
+      - microservices
+
+  read-message2:
+    build:
+      context: ./apps/read-message2
+    ports:
+      - "3008:3008"
+    depends_on:
+      - send-message
+    networks:
+      - microservices
 
 networks:
   microservices:
