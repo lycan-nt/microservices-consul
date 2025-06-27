@@ -23,7 +23,7 @@ public class PrometheusGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        Counter.builder("gateway.requests.total")
+        Counter.builder("gateway_requests_total")
                 .description("Total de requisições recebidas")
                 .tag("method", exchange.getRequest().getMethodValue())
                 .tag("path", exchange.getRequest().getPath().toString())
@@ -34,7 +34,7 @@ public class PrometheusGlobalFilter implements GlobalFilter, Ordered {
                 .then(Mono.fromRunnable(() -> {
                     if(exchange.getResponse().getRawStatusCode() != null){
                         int statusCode = exchange.getResponse().getRawStatusCode();
-                        Counter.builder("gateway.responses.total")
+                        Counter.builder("gateway_responses_total")
                                 .description("The total handled responses")
                                 .tag("status", Integer.toString(statusCode))
                                 .register(this.meterRegistry)

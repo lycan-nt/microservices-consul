@@ -26,4 +26,5 @@ public class DepartmentServiceController {
     public ResponseEntity<String> getUsersByDeptId(@RequestParam String deptId){
         return userServiceClient.getUsersByDeptId(deptId);
     }
+
 }
