@@ -71,11 +71,6 @@ cd microservices-consul
 docker-compose up --build
 ```
 
-3. **Execute cada microsserviço**  
-Cada pasta possui seu próprio README com instruções específicas.
-
----
-
 ## 📊 Observabilidade
 
 O sistema está integrado ao **Grafana**, possibilitando:
