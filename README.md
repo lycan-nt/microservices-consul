@@ -66,10 +66,20 @@ git clone https://github.com/seu-usuario/microservices-consul.git
 cd microservices-consul
 ```
 
-2. **Suba os serviços de infraestrutura (Consul, RabbitMQ, Grafana)**
+2. **Suba os serviços**
 ```bash
 docker-compose up --build
 ```
+
+3. **Acessos principais depois de subir**
+
+- Consul → http://localhost:8500
+- Prometheus → http://localhost:9090
+- Grafana → http://localhost:3000
+  - Usuário padrão: admin / Senha: admin (ou conforme definido no grafana.ini)
+- RabbitMQ (painel de administração) → http://localhost:15672
+  - Usuário padrão: guest / Senha: guest
+- Gateway → http://localhost:8080
 
 ## 📊 Observabilidade
 
