@@ -68,7 +68,7 @@ cd microservices-consul
 
 2. **Suba os serviços de infraestrutura (Consul, RabbitMQ, Grafana)**
 ```bash
-docker-compose up -d
+docker-compose up --build
 ```
 
 3. **Execute cada microsserviço**  
